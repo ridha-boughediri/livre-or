@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 
 if (isset($_POST['gosignup'])) {
     header('Location: ./inscription.php');
@@ -22,7 +22,7 @@ if (isset($_POST['gosignup'])) {
 </head>
 
 <body>
-<?php require("./fileconfig/header.php");  
+<?php require("./header.php");  
 
 ?>
 

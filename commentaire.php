@@ -32,7 +32,7 @@ if (isset($_SESSION['id'])) {
     </head>
 
     <body>
-    <?php require("./fileconfig/header.php");  
+    <?php require("./header.php");  
 
 ?>
         <header>

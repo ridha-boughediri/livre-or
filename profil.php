@@ -12,25 +12,18 @@ if (isset($_SESSION['id'])) {
 
     if (isset($_POST['update'])) {
 
-        
-        $email = htmlspecialchars($_POST["login"]);
-    
+
+        $login = htmlspecialchars($_POST["login"]);
         $passe = sha1($_POST["password"]);
-        if (isset($_POST["prenom"]) && !empty($_POST["prenom"]) || (isset($_POST["nom"]) && !empty($_POST["nom"])) || (isset($_POST["email"]) && !empty($_POST["email"]))) {
-            $updateusers = $bdd->prepare("UPDATE utilisateurs SET  nom=?, prenom=?, login=? WHERE id=?");
-            $updateusers->execute(array($prenom,$nom,$email,$_SESSION['id'] ));
+
+        if (isset($_POST["login"]) && !empty($_POST["login"])|| (isset($_POST["password"]) && !empty($_POST["password"]))) {
+            $updateusers = $bdd->prepare("UPDATE utilisateurs SET login=?, password=? WHERE id=?");
+            $updateusers->execute(array($login,$passe, $_SESSION['id']));
             header("Location: ./profil.php");
-        
         }
-
-
-
-
     }
-
-
 }
-        // afficher le lien si l'user est admin
+// afficher le lien si l'user est admin
 if (isset($recupinfos['login']) and $recupinfos['login'] == 'admin') {
 }
 
@@ -51,36 +44,36 @@ if (isset($recupinfos['login']) and $recupinfos['login'] == 'admin') {
 
 <body>
 
-<?php require("./fileconfig/header.php");  
+    <?php require("./header.php");
 
-?>
-  
+    ?>
+
     <div class="container2">
-  <div class="item2">
+        <div class="item2">
 
-  <div class="container">
-        <h2>Quelques informations sur vous : </h2>
-    <form action="" method="post">
-        <h2>ID :</h2>
-        <input type="text" name="id" id="" value=" <?php echo $userinfo['id'] ?>">
-       
-        <h2>E-Mail</h2>
-        <input type="text" name="login" id="" value="<?php echo $userinfo['login'] ?>">
-        <h2>Mot de Passe</h2>
-        <input type="password" name="password" id="" value=" <?php echo $userinfo['password'] ?>">
+            <div class="container">
+                <h2>Quelques informations sur vous : </h2>
+                <form action="" method="post">
+                    <h2>ID :</h2>
+                    <input type="text" name="id" id="" value=" <?php echo $userinfo['id'] ?>">
+
+                    <h2>E-Mail</h2>
+                    <input type="text" name="login" id="" value="<?php echo $userinfo['login'] ?>">
+                    <h2>Mot de Passe</h2>
+                    <input type="password" name="password" id="" value=" <?php echo $userinfo['password'] ?>">
 
 
-        <input type="submit" name="update" name=""value="modifier">
-      <?php  if (isset($recupinfos['login']) and $recupinfos['login'] == 'admin') {?>
-        <a href="admin.php">espace admin</a>
+                    <input type="submit" name="update" name="" value="modifier">
+                    <?php if (isset($recupinfos['login']) and $recupinfos['login'] == 'admin') { ?>
+                        <a href="admin.php">espace admin</a>
 
-<?php } ?>
-        
+                    <?php } ?>
 
-    </form>
+
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div> 
 </body>
 
 </html>

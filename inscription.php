@@ -50,7 +50,7 @@ if (isset($_POST['submit-insc'])) {
 
 <body>   
 
-<?php require("./fileconfig/header.php");  
+<?php require("./header.php");  
 
 ?>
   

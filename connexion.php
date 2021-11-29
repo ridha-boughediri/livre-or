@@ -41,7 +41,7 @@ if (isset($_POST['submit-connect'])) {
 <body>     
     
 
-<?php require("./fileconfig/header.php");  
+<?php require("./header.php");  
 
 ?> 
     <div class="container">
